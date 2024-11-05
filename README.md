@@ -1,6 +1,6 @@
 # Sum-Based Sorting Algorithm
 
-This repository contains an implementation of a novel sorting algorithm that sorts an array of integers based on the sums of its halves. The algorithm recursively splits the array, compares the sums of the two halves, and rearranges them until the entire array is sorted.
+This repository contains an implementation of a novel sorting algorithm that sorts an array of integers based on the sums of its halves. The algorithm recursively splits the array, compares the sums of its halves, and rearranges them until the entire array is sorted.
 
 ## Algorithm Explanation
 
