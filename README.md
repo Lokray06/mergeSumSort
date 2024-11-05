@@ -1,6 +1,6 @@
 # Sum-Based Sorting Algorithm
 
-This repository contains an implementation of a novel sorting algorithm that sorts an array of integers based on the sums of its halves. The algorithm recursively splits the array, compares the sums of its halves, and rearranges them until the entire array is sorted.
+This repository contains an implementation of a novel sorting algorithm that sorts an array of integers based on the sums of its halves. The algorithm recursively splits the array, compares the sums of the two halves, and rearranges them until the entire array is sorted.
 
 ## Algorithm Explanation
 
@@ -16,9 +16,9 @@ This algorithm's core idea is unique because it uses the sums of array segments 
 
 ## Complexity Analysis
 
-- **Time Complexity**: The time complexity of this algorithm is \(O(n \log n)\). This is due to the recursive splitting (similar to merge sort) and the overhead of summing elements at each level of recursion.
+- **Time Complexity**: The time complexity of this algorithm is $\(O(n \log n)\)$. This is due to the recursive splitting (similar to merge sort) and the overhead of summing elements at each level of recursion.
   
-- **Space Complexity**: The space complexity is \(O(n)\) due to the temporary storage needed for merging the two halves.
+- **Space Complexity**: The space complexity is $\(O(n)\)$ due to the temporary storage needed for merging the two halves.
 
 ## Usage
 
