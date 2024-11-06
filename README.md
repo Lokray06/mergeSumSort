@@ -13,6 +13,8 @@ The sorting algorithm follows these steps:
 5. **Merging**: Once sorted, the two halves are merged back together into a single sorted array.
 
 This algorithm's core idea is unique because it uses the sums of array segments to dictate their order, rather than relying solely on direct comparisons of individual elements.
+![SumMergeSort (1)](https://github.com/user-attachments/assets/cf5ffb75-aba1-476b-91ea-f3ea39f612c9)
+
 
 ## Complexity Analysis
 
