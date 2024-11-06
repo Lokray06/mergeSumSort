@@ -3,9 +3,9 @@ import java.util.Random;
 
 public class Main {
 
-    static Random random = new Random();
     // Generates an array of length `n` with random values from 0 to 100
     public static int[] generateRandomArray(int n) {
+        Random random = new Random();
         int[] array = new int[n];
         for (int i = 0; i < n; i++) {
             array[i] = random.nextInt(101); // Random numbers from 0 to 100
@@ -24,40 +24,50 @@ public class Main {
 
         int mid = (start + end) / 2;
 
-        // Sum the left and right halves without calling another method
-        int leftSum = 0, rightSum = 0;
-        for (int i = start; i <= mid; i++) leftSum += array[i];
-        for (int i = mid + 1; i <= end; i++) rightSum += array[i];
+        // Sum the left and right halves
+        int leftSum = sum(array, start, mid);
+        int rightSum = sum(array, mid + 1, end);
 
-        // If left sum is greater, swap the halves in-place
+        // If left sum is greater, swap the halves
         if (leftSum > rightSum) {
-            swapHalvesInPlace(array, start, mid, end);
+            swapHalves(array, start, mid, end);
         }
 
         // Recursively sort each half
         recursiveSumSort(array, start, mid);
         recursiveSumSort(array, mid + 1, end);
 
-        // Merge the two halves only if necessary
-        if (leftSum > rightSum) {
-            merge(array, start, mid, end);
-        }
+        // Merge the two halves
+        merge(array, start, mid, end);
     }
 
-    // Helper method to swap elements of the left and right halves in place
-    private static void swapHalvesInPlace(int[] array, int start, int mid, int end) {
+    // Helper method to calculate the sum of elements in the array from `start` to `end`
+    private static int sum(int[] array, int start, int end) {
+        int total = 0;
+        for (int i = start; i <= end; i++) {
+            total += array[i];
+        }
+        return total;
+    }
+
+    // Helper method to swap the left and right halves of the array between `start`, `mid`, and `end`
+    private static void swapHalves(int[] array, int start, int mid, int end) {
         int leftSize = mid - start + 1;
-        int rightSize = end - mid;
-        int limit = Math.min(leftSize, rightSize);
+        int[] temp = new int[leftSize];
 
-        for (int i = 0; i < limit; i++) {
-            int temp = array[start + i];
+        // Copy left half to temporary array
+        System.arraycopy(array, start, temp, 0, leftSize);
+
+        // Move right half to left position
+        for (int i = 0; i < end - mid; i++) {
             array[start + i] = array[mid + 1 + i];
-            array[mid + 1 + i] = temp;
         }
+
+        // Move temp (left half) to right position
+        System.arraycopy(temp, 0, array, start + (end - mid), leftSize);
     }
 
-    // Merges two sorted halves of the array if necessary
+    // Merges two sorted halves of the array
     private static void merge(int[] array, int start, int mid, int end) {
         int[] temp = new int[end - start + 1];
         int i = start, j = mid + 1, k = 0;
@@ -87,19 +97,9 @@ public class Main {
 
     // Main function for testing
     public static void main(String[] args) {
-        int[] array = generateRandomArray(10);
+        int[] array = generateRandomArray(50);
         System.out.println("Original array: " + Arrays.toString(array));
-        
-        // Record the start time
-        long startTime = System.currentTimeMillis();
-        
-        // Sort the array
         sortBySums(array);
-        
-        // Record the end time
-        long endTime = System.currentTimeMillis();
-        
         System.out.println("Sorted array: " + Arrays.toString(array));
-        System.out.println("Time taken to sort: " + (endTime - startTime) + " milliseconds");
     }
 }
